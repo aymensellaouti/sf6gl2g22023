@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Hello TodoController!{% endblock %}
+
+{% block body %}
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Content</th>
+            <th>Actions</th>
+        </tr>
+      {% for todoName, todoContent in app.session.get('todos')%}
+          <tr>
+              <td> {{ todoName }}</td>
+              <td>
+                  {{ todoContent }}
+              </td>
+              <td>
+                  <a href="{{ path('delete_todo', {id: todoName}) }}"><i class="bi bi-archive-fill"></i></a>
+              </td>
+          </tr>
+      {% else %}
+          <tr>
+              <td colspan="2">Il n'existe aucun todo</td>
+          </tr>
+      {% endfor %}
+    </table>
+{% endblock %}
