@@ -9,14 +9,14 @@
             <th>Content</th>
             <th>Actions</th>
         </tr>
-      {% for todoName, todoContent in app.session.get('todos')%}
+      {% for todo in todos%}
           <tr>
-              <td> {{ todoName }}</td>
+              <td> {{ todo.name }}</td>
               <td>
-                  {{ todoContent }}
+                  {{ todo.content }}
               </td>
               <td>
-                  <a href="{{ path('delete_todo', {id: todoName}) }}"><i class="bi bi-archive-fill"></i></a>
+                  <a href="{{ path('delete_todo', {id: todo.id}) }}"><i class="bi bi-archive-fill"></i></a>
               </td>
           </tr>
       {% else %}
