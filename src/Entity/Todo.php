@@ -19,6 +19,9 @@ class Todo
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'todos')]
+    private ?Person $person = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -44,6 +47,18 @@ class Todo
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getPerson(): ?Person
+    {
+        return $this->person;
+    }
+
+    public function setPerson(?Person $person): self
+    {
+        $this->person = $person;
 
         return $this;
     }
