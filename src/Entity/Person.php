@@ -22,12 +22,10 @@ class Person
     #[ORM\Column(type: Types::SMALLINT)]
     private ?int $age = null;
 
-    #[ORM\OneToMany(mappedBy: 'person', targetEntity: Todo::class)]
-    private Collection $todos;
 
     public function __construct()
     {
-        $this->todos = new ArrayCollection();
+
     }
 
     public function getId(): ?int
@@ -59,33 +57,4 @@ class Person
         return $this;
     }
 
-    /**
-     * @return Collection<int, Todo>
-     */
-    public function getTodos(): Collection
-    {
-        return $this->todos;
-    }
-
-    public function addTodo(Todo $todo): self
-    {
-        if (!$this->todos->contains($todo)) {
-            $this->todos->add($todo);
-            $todo->setPerson($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTodo(Todo $todo): self
-    {
-        if ($this->todos->removeElement($todo)) {
-            // set the owning side to null (unless already changed)
-            if ($todo->getPerson() === $this) {
-                $todo->setPerson(null);
-            }
-        }
-
-        return $this;
-    }
 }
