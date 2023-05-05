@@ -19,9 +19,6 @@ class Todo
     #[ORM\Column(length: 255)]
     private ?string $content = null;
 
-    #[ORM\ManyToOne(inversedBy: 'todos')]
-    private ?Person $person = null;
-
     public function getId(): ?int
     {
         return $this->id;
